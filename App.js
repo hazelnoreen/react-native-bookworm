@@ -9,6 +9,7 @@ import {
   TextInput, 
   FlatList } from 'react-native';
 import BookCount from './components/BookCount'
+import CustomActionButton from './components/CustomActionButton'
 import { Ionicons } from '@expo/vector-icons'
 
 export default function App() {
@@ -16,7 +17,7 @@ export default function App() {
       totalCount: 0,
       readingCount: 0,
       readCount: 0,
-      isAddNewBookVisible: false,
+      isAddNewBookVisible: true,
       textInputData: '',
       books: []
     }
@@ -87,7 +88,16 @@ export default function App() {
               placeholder='Enter Book Name'
               placeholderTextColor='grey'
             />
-          <TouchableOpacity onPress={()=>this.addBook(this.state.textInputData)}>
+
+            <CustomActionButton style={{ backgroundColor:'#a5deba' }} 
+              onPress={this.addBook(this.state.textInputData)}>
+              <Ionicons name='ios-checkmark' color='white' size={50} />
+            </CustomActionButton>
+            <CustomActionButton>
+              <Ionicons name='ios-close' color='white' size={50} />
+            </CustomActionButton>
+
+          {/* <TouchableOpacity onPress={()=>this.addBook(this.state.textInputData)}>
             <View style={{ 
               width: 50, 
               height: 50,
@@ -97,16 +107,7 @@ export default function App() {
               <Ionicons name='ios-checkmark' color='white' size={50} />
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={this.hideAddNewBook}>
-            <View style={{ 
-              width: 50, 
-              height: 50,
-              backgroundColor: '#deada5', 
-              alignItems:'center', 
-              justifyContent: 'center' }}>
-              <Ionicons name='ios-close' color='white' size={50} />
-            </View>
-          </TouchableOpacity>
+           */}
           </View>
           )}
           <FlatList 
@@ -141,7 +142,7 @@ export default function App() {
           borderTopColor: '#E9E9E9',
           flexDirection: 'row'
         }}>
-          <BookCount title='TOTAL' count={this.state.totalCount} />
+          <BookCount title="TITLE" count={this.state.totalCount} />
           <BookCount title='READING' count={this.state.readingCount} />
           <BookCount title='READ' count={this.state.readCount} />
         </View>
